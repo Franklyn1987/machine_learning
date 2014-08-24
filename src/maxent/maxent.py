@@ -45,7 +45,7 @@ class Maxent:
         # return p_y_x * p_x
 
 
-    def load_training_file(self,file_name):
+    def load_training_data(self,file_name):
         for line in open(file_name,"r"):
             fields = line.strip().split(" ")
             label = fields[0]
@@ -127,7 +127,7 @@ class Maxent:
 
 
 maxent = Maxent()
-maxent.load_training_file("train_data.txt")
+maxent.load_training_data("train_data.txt")
 maxent.train(100)
 for feature in maxent.features:
     for label in maxent.labels:
