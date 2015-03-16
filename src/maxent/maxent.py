@@ -111,7 +111,7 @@ class Maxent:
         return result
 
     def newton(self,e_qs,e_ref,theta,tol):
-        sigma2 =  4.0
+        sigma2 =  2.0
         x0 = 0.0
         x = 0.0
         max_iter = 50
@@ -127,11 +127,11 @@ class Maxent:
 
 
 maxent = Maxent()
-maxent.load_training_data("train_data.txt")
+maxent.load_training_data("data/train_data.txt")
 maxent.train(100)
-for feature in maxent.features:
-    for label in maxent.labels:
-        print feature,label,maxent.features[feature][label]
+# for feature in maxent.features:
+#     for label in maxent.labels:
+#         print feature,label,maxent.features[feature][label]
 maxent.predict(["Rainy"])
 
 
