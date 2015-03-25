@@ -40,7 +40,7 @@ class RandomForest():
 
 
     def predict(self,X):
-        result = [int(tree.predict(X[idy])) for tree,idy in self.trees]
+        result = [int(tree.predict_prob(X[idy])) for tree,idy in self.trees]
         # print result
         count = Counter(result)
         # print count
@@ -48,7 +48,7 @@ class RandomForest():
         return y
 
     def predict_prob(self,X,y):
-        result = [tree.predict(X) for tree in self.trees]
+        result = [tree.predict_prob(X) for tree in self.trees]
         count = Counter(result)
         print count
         return count[y] * 1.0 /sum(count.values())

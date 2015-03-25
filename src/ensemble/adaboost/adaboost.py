@@ -39,7 +39,7 @@ class AdaBoost(object):
     def predict(self,X):
         predict_array = np.zeros(X.shape[0])
         for model,alpha in zip(self.models,self.alphas):
-            predict_array += alpha * model.predict(X)
+            predict_array += alpha * model.predict_prob(X)
         return np.sign(predict_array)
 
 
@@ -55,7 +55,7 @@ class AdaBoost(object):
             model = copy.deepcopy(self.classifier)
             model = model.fit(X, y, weights=weights)
             self.models.append(model)
-            predict_array = model.predict(X)
+            predict_array = model.predict_prob(X)
 
             error = np.sum(weights[predict_array != y])/np.sum(weights)
             t = ((1.0 - error) / error) ** 0.5
